@@ -15,9 +15,7 @@
           height: item.height + 'px',
           width: item.width + 'px'
         }"
-      >
-        嘎嘎嘎
-      </div>
+      >嘎嘎嘎</div>
     </section>
   </div>
 </template>
@@ -44,12 +42,13 @@ export default {
     // ];
     const events = [
       { start: 30, end: 150 },
-
+      { start: 540, end: 600 },
       { start: 540, end: 600 },
       { start: 560, end: 620 },
       { start: 610, end: 670 }
     ];
-    this.layOutDay(events);
+    // this.layOutDay(events);
+    this.getOverList(events)
   },
   methods: {
     //   初始化渲染 y轴时间
@@ -69,6 +68,26 @@ export default {
         list.push(timeStr);
       }
       this.timeList.push(...list);
+    },
+    getOverList(events) {
+      let res = [];
+      events.forEach((item, index) => {
+        let indexList = [];
+        indexList.push(index);
+        for (let i = 0; i < events.length; i++) {
+          if (index !== i) {
+            if (
+              (events[i].start >= item.start && events[i].start <= item.end) ||
+              (events[i].end >= item.start && events[i].end <= item.end)
+            ) {
+              indexList.push(i)
+            }
+          }
+        }
+        res.push(indexList)
+        
+      });
+      console.log(res)
     },
     // 重叠函数
     overlapFn(events, item, index, res = []) {

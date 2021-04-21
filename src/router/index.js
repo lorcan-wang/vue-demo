@@ -22,6 +22,21 @@ const routes = [
     path: '/index',
     name: 'Index',
     component: () => import('../views/Index.vue')
+  },
+  {
+    path: '/demo',
+    name: 'Demo',
+    component: () => import('../views/demo.vue')
+  },
+  {
+    path: '/demo2',
+    name: 'Demo2',
+    component: () => import('../views/demo2.vue')
+  },
+  {
+    path: '/canvas-demo',
+    name: 'canvasDemo',
+    component: () => import('../views/canvasDemo.vue')
   }
 ]
 
